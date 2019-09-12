@@ -16,7 +16,9 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 
-mongoose.connect("mongodb://localhost/csccChallenge", { useNewUrlParser: true });
+
+var url = process.env.DATABASEURL || "mongodb://localhost/csccChallenge";
+mongoose.connect(url, {useNewUrlParser: true});
 
 //PASSPORT CONFIGURATION
 app.use(require('express-session')({      
@@ -47,6 +49,7 @@ app.use(indexRoutes);
 app.use("/challenges",challengesRoutes);
 app.use("/challenges/:challengeID/solutions",solutionsRoutes);
 
-app.listen(3000,function(){
-    console.log("Server On");
-})
+var PORT = process.env.PORT || 3000 ;
+app.listen(PORT,process.env.IP,function(){
+    console.log("Server ON");
+});
