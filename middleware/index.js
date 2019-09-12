@@ -16,7 +16,7 @@ middlewareObj.checkChallenge = [
     check('challenge[description]').not().isEmpty().withMessage('All fields with * are required')
 ]
 middlewareObj.checkSolution = [
-    check().isEmpty().withMessage('You must enter a solution!')
+    check().not().isEmpty().withMessage('You must enter a solution!')
 ]
 
 middlewareObj.isLoggedIn = function(req,res,next){
