@@ -1,0 +1,53 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <h3 class="text-dark">Challenges</h3>
+        <a href="/challenges/new" class="text-dark mr-4">
+            <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+        </a>
+    </div>
+    <ul class="list-group list-group-flush border rounded">
+        <% challenges.forEach(function(challenge){ %>
+            <li class="list-group-item pl-3 todo">
+                <div class="d-flex justify-content-between align-items-center">
+                    
+                    <div class="d-flex flex-row">
+                        <span class="text-info">
+                            <strong>
+                                <a href="/challenges/<%=challenge._id%>">
+                                    <%= challenge.title %>
+                                </a>
+                            </strong>
+                        </span>
+                        <small class="text-muted ml-2 pt-1"><%= challenge.created.toISOString().split('T')[0] %></small>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <span class="d-flex justify-content-center align-items-center ml-1">
+                            <a href="/challenges/<%=challenge._id%>/edit" class="btn btn-warning btn-sm text-light">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <form action="/challenges/<%=challenge._id%>?_method=DELETE" method="POST">
+                            <span class="d-flex justify-content-center align-items-center ml-1">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <p><%= challenge.description %></p>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <span class="text-muted">Hint :</span>
+                        <small class="text-danger"><%= challenge.hint %></small> 
+                    </div>
+                    <span> Author : <%= challenge.author.username %></span>  
+                </div>      
+        </li> 
+    <% }) %>
+    </ul>
+</div>
+
+<% include ../partials/footer.ejs %>

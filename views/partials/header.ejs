@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSCC | Challenges</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/02a92eb33f.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <nav class="navbar fixed-top" id="nav-top">
+        <div class="container">
+            <div class="d-flex justify-content-start">
+                    <a class="navbar-brand text-light" href="/challenges">
+                        <img src="/img/logoblanc.png" class="" alt="" style="max-width: 50px">
+                        <span class="ml-1">CSCC CHALLENGES</span> 
+                    </a>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    <% if(currentUser){ %>
+                        <span class="text-light"><%= currentUser.username %></span>
+                        <span class="text-light ml-4">Score : <%= currentUser.score %></span>
+                        <a href="/logout" class="nav-link text-light">Log out</a>
+                    <% }else{ %>
+                        <a href="/login" class="nav-link text-light">Log in</a>
+                        <a href="/register" class="nav-link text-light">Sign In</a>
+                    <% } %>
+            </div>  
+        </div>
+    </nav>
+    <div class="container message">
+        <% if(danger && danger.length > 0){ %>
+          <div class="alert alert-danger" role="alert" style="margin-top: 60px">
+              <%= danger %>
+          </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+        <div class="alert alert-success" role="alert" style="margin-top: 60px">
+            <%= success %>
+        </div>
+        <% } %>
+        <% if(warning && warning.length > 0){ %>
+            <div class="alert alert-warning" role="alert" style="margin-top: 60px">
+                <%= warning %>
+            </div>
+        <% } %>
+    </div>
+    
