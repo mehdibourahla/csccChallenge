@@ -6,7 +6,7 @@ var middlewareObj = {};
 
 middlewareObj.checkRegister = [
     check().not().isEmpty().withMessage('All fields are required'),
-    check('username').isLength({ min: 8, max:20 }).withMessage('Username must be between 8 and 20 chars'),
+    check('username').isLength({max:20 }).withMessage('Username must be under 20 chars'),
     check('email').isEmail().withMessage('Please enter a valid email'),
     check('password').isLength({ min: 8 }).withMessage('Password must be at least 8 chars long')
   ]
